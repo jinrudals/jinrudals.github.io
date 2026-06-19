@@ -3,11 +3,13 @@ import assert from 'node:assert/strict';
 
 import {
   careerLinks,
+  focusItems,
   getProjectBySlug,
   getStudyPostLabels,
   getStudyPostsByLabel,
   getStudyCategory,
   getStudyPost,
+  landingProjectGroups,
   navItems,
   projectItems,
   studyLabels,
@@ -79,4 +81,33 @@ test('study post labels resolve display metadata', () => {
     labels.map((label) => label.id),
     []
   );
+});
+
+test('landing focus items describe the devops study direction', () => {
+  assert.deepEqual(
+    focusItems.map((item) => item.label),
+    ['DevOps', 'CI/CD', 'Infrastructure', 'Observability', 'Backend', 'AI Automation']
+  );
+
+  for (const item of focusItems) {
+    assert.equal(typeof item.description, 'string');
+    assert.ok(item.description.length > 0);
+  }
+});
+
+test('landing project groups preview work systems and personal projects', () => {
+  assert.deepEqual(
+    landingProjectGroups.map((group) => group.label),
+    ['Work Systems', 'Personal Projects']
+  );
+
+  assert.deepEqual(landingProjectGroups[0].items, [
+    'MR CI stability',
+    'YAML Jenkins pipeline',
+    'HPC computing farm',
+    'DV regression reporting',
+    'Design quality checks'
+  ]);
+
+  assert.deepEqual(landingProjectGroups[1].items, ['AI Cage']);
 });

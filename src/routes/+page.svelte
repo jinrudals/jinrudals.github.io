@@ -1,66 +1,67 @@
 <script lang="ts">
-  import { careerLinks, featuredProjects, recentStudyPosts } from '$lib/content.js';
+  import {
+    careerLinks,
+    focusItems,
+    landingProjectGroups,
+    recentStudyPosts,
+    studyCategories
+  } from '$lib/content.js';
 </script>
 
 <svelte:head>
-  <title>jinrudals</title>
+  <title>jinrudals | DevOps study hub</title>
   <meta
     name="description"
-    content="Personal site for jinrudals, built with SvelteKit and GitHub Pages."
+    content="Study hub for DevOps, automation, reliability, infrastructure, and related project notes."
   />
 </svelte:head>
 
 <main class="page">
   <section class="hero" aria-labelledby="site-title">
     <div class="hero-copy">
-      <p class="eyebrow">jinrudals.github.io</p>
-      <h1 id="site-title">개인 기록과 프로젝트를 정리하는 공간입니다.</h1>
+      <p class="eyebrow">DevOps-oriented study hub</p>
+      <h1 id="site-title">Building toward DevOps through study and automation.</h1>
       <p class="lede">
-        소개, 공부 기록, 프로젝트, 커리어 문서를 차근차근 채워갈 예정입니다.
+        반도체 개발 환경에서 CI, 자동화, 검증 인프라를 다뤄왔고, 그 경험을 바탕으로
+        DevOps/SRE 영역을 공부하고 기록합니다.
       </p>
       <div class="actions" aria-label="Primary links">
-        <a class="primary" href="/projects">Projects</a>
-        <a href="/study">Study</a>
+        <a class="primary" href="/study">Study</a>
+        <a href="/projects">Projects</a>
         <a href="/career">Career</a>
       </div>
     </div>
-    <div class="signal" aria-label="Site sections">
-      <span>Study</span>
-      <span>Projects</span>
-      <span>Career</span>
-      <strong>jinrudals</strong>
+    <div class="signal" aria-label="Current direction">
+      <span>Reliability</span>
+      <span>Automation</span>
+      <span>Infrastructure</span>
+      <strong>DevOps</strong>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="featured-projects">
+  <section class="section" aria-labelledby="focus-title">
     <div class="section-heading">
-      <p class="eyebrow">Featured</p>
-      <h2 id="featured-projects">Projects</h2>
+      <p class="eyebrow">Current Focus</p>
+      <h2 id="focus-title">공부하고 기록할 기술 축</h2>
     </div>
-    <div class="grid two">
-      {#each featuredProjects as project}
-        <article class="card">
-          <p class="meta">{project.period} · {project.role}</p>
-          <h3>{project.title}</h3>
-          <p>{project.summary}</p>
-          <div class="pill-row">
-            {#each project.stack as item}
-              <span class="pill">{item}</span>
-            {/each}
-          </div>
-          <a class="text-link" href={`/projects/${project.slug}`}>프로젝트 보기</a>
+    <div class="grid three focus-grid">
+      {#each focusItems as item}
+        <article class="card compact-card">
+          <h3>{item.label}</h3>
+          <p>{item.description}</p>
         </article>
-      {:else}
-        <p class="empty">아직 등록된 프로젝트가 없습니다.</p>
       {/each}
     </div>
   </section>
 
-  <section class="section split" aria-labelledby="recent-study">
+  <section class="section split" aria-labelledby="study-title">
     <div>
-      <p class="eyebrow">Recent</p>
-      <h2 id="recent-study">Study Notes</h2>
-      <p class="lede">최근에 정리한 공부 글입니다. 전체 목록은 블로그처럼 `/study`에서 볼 수 있습니다.</p>
+      <p class="eyebrow">Study Notes</p>
+      <h2 id="study-title">학습 기록</h2>
+      <p class="lede">
+        DevOps, 인프라, 백엔드, AI 자동화로 이어지는 공부를 카테고리별로 쌓아갑니다.
+      </p>
+      <a class="text-link" href="/study">전체 Study 보기</a>
     </div>
     <div class="list">
       {#each recentStudyPosts as post}
@@ -70,14 +71,45 @@
           <p>{post.summary}</p>
         </a>
       {:else}
-        <p class="empty">아직 등록된 공부 글이 없습니다.</p>
+        <div class="empty-panel">
+          <strong>아직 등록된 공부 글이 없습니다.</strong>
+          <p>먼저 채울 카테고리부터 정리해두었습니다.</p>
+          <div class="pill-row">
+            {#each studyCategories as category}
+              <a class="pill-link" href={`/study/${category.id}`}>{category.label}</a>
+            {/each}
+          </div>
+        </div>
+      {/each}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="project-preview-title">
+    <div class="section-heading">
+      <p class="eyebrow">Projects</p>
+      <h2 id="project-preview-title">경험과 실험의 기록</h2>
+      <p class="lede">
+        홈에서는 방향만 보여주고, 시스템별 상세 내용은 프로젝트 페이지에 따로 정리합니다.
+      </p>
+    </div>
+    <div class="grid two">
+      {#each landingProjectGroups as group}
+        <a class="card link-card project-preview" href={group.href}>
+          <h3>{group.label}</h3>
+          <p>{group.description}</p>
+          <div class="pill-row">
+            {#each group.items as item}
+              <span class="pill">{item}</span>
+            {/each}
+          </div>
+        </a>
       {/each}
     </div>
   </section>
 
   <section class="section" aria-labelledby="career-title">
     <p class="eyebrow">Career</p>
-    <h2 id="career-title">Resume, Cover Letter, Portfolio</h2>
+    <h2 id="career-title">Career Documents</h2>
     <div class="grid three">
       {#each careerLinks as item}
         <a class="card link-card" href={item.href}>
@@ -180,18 +212,6 @@
     font-size: 2.4rem;
   }
 
-  .meta {
-    margin-top: 0;
-    color: var(--warm);
-    font-size: 0.9rem;
-    font-weight: 800;
-  }
-
-  .card .text-link {
-    display: inline-flex;
-    margin-top: 12px;
-  }
-
   .split {
     display: grid;
     gap: 36px;
@@ -233,12 +253,6 @@
   .link-card {
     color: inherit;
     text-decoration: none;
-  }
-
-  .empty {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.7;
   }
 
   @media (max-width: 880px) {

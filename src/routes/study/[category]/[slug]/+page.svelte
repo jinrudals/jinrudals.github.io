@@ -1,5 +1,9 @@
 <script>
+  import { markdownToHtml } from '$lib/markdown.js';
+
   export let data;
+
+  $: bodyHtml = markdownToHtml(data.post.body);
 </script>
 
 <svelte:head>
@@ -22,9 +26,7 @@
     </header>
 
     <div class="body">
-      {#each data.post.body as paragraph}
-        <p>{paragraph}</p>
-      {/each}
+      {@html bodyHtml}
     </div>
   </article>
 </main>
@@ -50,9 +52,88 @@
     margin-top: 56px;
   }
 
-  .body p {
+  .body :global(h1),
+  .body :global(h2),
+  .body :global(h3) {
+    color: var(--ink);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+
+  .body :global(h1) {
+    margin: 0 0 28px;
+    font-size: 2.2rem;
+  }
+
+  .body :global(h2) {
+    margin: 48px 0 16px;
+    font-size: 1.5rem;
+  }
+
+  .body :global(h3) {
+    margin: 34px 0 12px;
+    font-size: 1.18rem;
+  }
+
+  .body :global(p),
+  .body :global(li),
+  .body :global(td),
+  .body :global(th) {
     color: #343941;
     font-size: 1.08rem;
     line-height: 1.9;
+  }
+
+  .body :global(ul) {
+    margin: 14px 0 26px;
+    padding-left: 1.35rem;
+  }
+
+  .body :global(pre) {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin: 18px 0 28px;
+    padding: 18px;
+    background: #111827;
+    color: #f8fafc;
+  }
+
+  .body :global(code) {
+    border-radius: 5px;
+    padding: 0.14em 0.34em;
+    background: #eef2f7;
+    color: #1f2937;
+    font-size: 0.92em;
+  }
+
+  .body :global(pre code) {
+    padding: 0;
+    background: transparent;
+    color: inherit;
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+
+  .body :global(table) {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0 32px;
+  }
+
+  .body :global(th),
+  .body :global(td) {
+    border: 1px solid var(--line);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .body :global(th) {
+    background: var(--surface);
+    color: var(--ink);
+    font-weight: 800;
   }
 </style>

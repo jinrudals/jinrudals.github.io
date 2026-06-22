@@ -16,13 +16,6 @@ function query(sql) {
   return JSON.parse(output || '[]');
 }
 
-function lines(value) {
-  return String(value)
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-}
-
 const postRows = query(`
   SELECT slug, category, title, date, summary, body
   FROM study_posts
@@ -77,7 +70,7 @@ const studyPosts = postRows.map((post) => ({
   date: post.date,
   tags: (tagsByPost.get(`${post.category}/${post.slug}`) ?? []).map((row) => row.tag),
   summary: post.summary,
-  body: lines(post.body)
+  body: post.body
 }));
 
 const projectItems = projectRows.map((project) => ({

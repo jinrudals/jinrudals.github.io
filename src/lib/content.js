@@ -18,7 +18,7 @@ export const navItems = [
  * @property {string} date
  * @property {string[]} tags
  * @property {string} summary
- * @property {string[]} body
+ * @property {string} body
  */
 
 /**

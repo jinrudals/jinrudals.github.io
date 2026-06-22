@@ -66,6 +66,21 @@ test('devops study guide is split into ordered notes', () => {
   assert.equal(getStudyPost('devops', 'scrum-ticket-operation')?.title, 'Scrum Ticket Operation');
 });
 
+test('devops study notes preserve markdown source structure', () => {
+  const leanPost = getStudyPost('devops', 'lean-philosophy');
+  const devopsPost = getStudyPost('devops', 'devops-philosophy');
+
+  assert.equal(typeof leanPost?.body, 'string');
+  assert.match(leanPost.body, /^# Lean Philosophy/);
+  assert.match(leanPost.body, /## 핵심 관점/);
+  assert.match(leanPost.body, /\| 관점 \| 의미 \|/);
+  assert.match(leanPost.body, /```text/);
+
+  assert.equal(typeof devopsPost?.body, 'string');
+  assert.match(devopsPost.body, /## DevOps 실천 영역/);
+  assert.ok(devopsPost.body.length > 4000);
+});
+
 test('projects expose detail slugs for portfolio pages', () => {
   assert.equal(projectItems.length, 1);
 

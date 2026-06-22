@@ -1,3 +1,8 @@
+import {
+  projectItems as generatedProjectItems,
+  studyPosts as generatedStudyPosts
+} from './generated/content.js';
+
 export const navItems = [
   { href: '/', label: 'Home' },
   { href: '/study', label: 'Study' },
@@ -26,6 +31,12 @@ export const navItems = [
  * @property {string} summary
  * @property {string[]} highlights
  */
+
+/** @type {StudyPost[]} */
+export const studyPosts = generatedStudyPosts;
+
+/** @type {ProjectItem[]} */
+export const projectItems = generatedProjectItems;
 
 export const studyCategories = [
   {
@@ -107,12 +118,6 @@ export const landingProjectGroups = [
     items: ['AI Cage']
   }
 ];
-
-/** @type {StudyPost[]} */
-export const studyPosts = [];
-
-/** @type {ProjectItem[]} */
-export const projectItems = [];
 
 export const careerLinks = [
   {

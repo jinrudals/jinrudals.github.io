@@ -8,3 +8,5 @@ dist
 coverage
 *.local
 .temp/
+.superpowers/
+.worktrees/

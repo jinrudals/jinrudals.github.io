@@ -60,6 +60,54 @@ export const studyCategories = [
   }
 ];
 
+export const focusItems = [
+  {
+    label: 'DevOps',
+    description: '개발과 운영 사이의 반복 가능한 흐름을 공부하고 정리합니다.'
+  },
+  {
+    label: 'CI/CD',
+    description: '변경을 빠르게 검증하고 안정적으로 전달하는 파이프라인에 집중합니다.'
+  },
+  {
+    label: 'Infrastructure',
+    description: 'Linux, HPC, 자동화 도구를 바탕으로 실행 환경을 이해합니다.'
+  },
+  {
+    label: 'Observability',
+    description: '시스템 상태를 보고 판단할 수 있는 지표와 리포팅을 다룹니다.'
+  },
+  {
+    label: 'Backend',
+    description: '자동화와 운영 도구를 지탱하는 서버 애플리케이션을 정리합니다.'
+  },
+  {
+    label: 'AI Automation',
+    description: 'AI 도구를 개발 워크플로와 개인 자동화에 연결해 실험합니다.'
+  }
+];
+
+export const landingProjectGroups = [
+  {
+    label: 'Work Systems',
+    href: '/projects',
+    description: '업무에서 다뤄온 자동화와 신뢰성 시스템은 상세 페이지에서 정리합니다.',
+    items: [
+      'MR CI stability',
+      'YAML Jenkins pipeline',
+      'HPC computing farm',
+      'DV regression reporting',
+      'Design quality checks'
+    ]
+  },
+  {
+    label: 'Personal Projects',
+    href: '/projects',
+    description: '공개 가능한 개인 프로젝트와 실험을 별도로 기록합니다.',
+    items: ['AI Cage']
+  }
+];
+
 /** @type {StudyPost[]} */
 export const studyPosts = [];
 

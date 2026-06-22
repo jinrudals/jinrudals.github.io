@@ -9,6 +9,19 @@ This repository contains the SvelteKit source for `jinrudals.github.io`.
 - Use `npm run dev` for local development.
 - Use `npm run check` before committing.
 - Use `npm run build` to verify the static GitHub Pages build.
+- The content source is the repo-managed SQLite database at `content/site.sqlite`.
+- `npm run dev`, `npm run check`, `npm run test`, and `npm run build` run `npm run generate:content` first.
+- Do not hand-edit `src/lib/generated/content.js`; update `content/site.sqlite` and regenerate it.
+- The local and CI environments must have the `sqlite3` CLI available.
+
+## Content
+
+Study posts and project items are read from SQLite at build time, then prerendered into static pages for GitHub Pages.
+
+- Keep schema changes in `content/schema.sql`.
+- Keep seed or example content in `content/seed.sql` when it is useful for rebuilding the local database.
+- Run `npm run generate:content` after changing `content/site.sqlite` if you need to inspect generated content before starting the dev server.
+- Commit `content/site.sqlite` together with any generated content changes that affect pages.
 
 ## Routing
 

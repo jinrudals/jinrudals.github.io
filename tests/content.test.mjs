@@ -30,7 +30,7 @@ test('study index has categories and each post belongs to a known category', () 
   assert.ok(categoryIds.has('backend'));
   assert.ok(categoryIds.has('frontend'));
   assert.ok(categoryIds.has('cs'));
-  assert.equal(studyPosts.length, 0);
+  assert.equal(studyPosts.length, 1);
 
   for (const post of studyPosts) {
     assert.ok(categoryIds.has(post.category));
@@ -44,7 +44,7 @@ test('category pages can resolve their display metadata', () => {
 });
 
 test('projects expose detail slugs for portfolio pages', () => {
-  assert.equal(projectItems.length, 0);
+  assert.equal(projectItems.length, 1);
 
   for (const project of projectItems) {
     assert.equal(getProjectBySlug(project.slug)?.title, project.title);
@@ -63,23 +63,24 @@ test('study labels are deduplicated and sorted for filtering', () => {
 
   assert.deepEqual(labels, [...new Set(labels)]);
   assert.deepEqual(labels, [...labels].sort());
-  assert.deepEqual(labels, []);
+  assert.deepEqual(labels, ['sqlite', 'sveltekit']);
 });
 
 test('study posts can be filtered by label', () => {
   const sveltekitPosts = getStudyPostsByLabel('sveltekit');
 
-  assert.equal(sveltekitPosts.length, 0);
+  assert.equal(sveltekitPosts.length, 1);
+  assert.equal(sveltekitPosts[0].slug, 'sqlite-content-source');
   assert.deepEqual(getStudyPostsByLabel('missing'), []);
 });
 
 test('study post labels resolve display metadata', () => {
-  const post = getStudyPost('frontend', 'sveltekit-routing');
+  const post = getStudyPost('frontend', 'sqlite-content-source');
   const labels = getStudyPostLabels(post);
 
   assert.deepEqual(
     labels.map((label) => label.id),
-    []
+    ['sqlite', 'sveltekit']
   );
 });
 

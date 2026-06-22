@@ -30,7 +30,8 @@ test('study index has categories and each post belongs to a known category', () 
   assert.ok(categoryIds.has('backend'));
   assert.ok(categoryIds.has('frontend'));
   assert.ok(categoryIds.has('cs'));
-  assert.equal(studyPosts.length, 1);
+  assert.ok(categoryIds.has('devops'));
+  assert.equal(studyPosts.length, 9);
 
   for (const post of studyPosts) {
     assert.ok(categoryIds.has(post.category));
@@ -40,7 +41,29 @@ test('study index has categories and each post belongs to a known category', () 
 
 test('category pages can resolve their display metadata', () => {
   assert.equal(getStudyCategory('backend')?.label, 'Backend');
+  assert.equal(getStudyCategory('devops')?.label, 'DevOps');
   assert.equal(getStudyCategory('missing'), undefined);
+});
+
+test('devops study guide is split into ordered notes', () => {
+  const devopsPosts = studyPosts.filter((post) => post.category === 'devops');
+
+  assert.deepEqual(
+    devopsPosts.map((post) => post.slug),
+    [
+      'lean-philosophy',
+      'agile-philosophy',
+      'scrum-framework',
+      'kanban-methodology',
+      'xp-methodology',
+      'devops-philosophy',
+      'process-vs-workflow',
+      'scrum-ticket-operation'
+    ]
+  );
+
+  assert.equal(getStudyPost('devops', 'lean-philosophy')?.title, 'Lean Philosophy');
+  assert.equal(getStudyPost('devops', 'scrum-ticket-operation')?.title, 'Scrum Ticket Operation');
 });
 
 test('projects expose detail slugs for portfolio pages', () => {
@@ -63,14 +86,27 @@ test('study labels are deduplicated and sorted for filtering', () => {
 
   assert.deepEqual(labels, [...new Set(labels)]);
   assert.deepEqual(labels, [...labels].sort());
-  assert.deepEqual(labels, ['sqlite', 'sveltekit']);
+  assert.deepEqual(labels, [
+    'agile',
+    'devops',
+    'kanban',
+    'lean',
+    'process',
+    'scrum',
+    'sqlite',
+    'sveltekit',
+    'workflow',
+    'xp'
+  ]);
 });
 
 test('study posts can be filtered by label', () => {
   const sveltekitPosts = getStudyPostsByLabel('sveltekit');
+  const devopsPosts = getStudyPostsByLabel('devops');
 
   assert.equal(sveltekitPosts.length, 1);
   assert.equal(sveltekitPosts[0].slug, 'sqlite-content-source');
+  assert.equal(devopsPosts.length, 8);
   assert.deepEqual(getStudyPostsByLabel('missing'), []);
 });
 

@@ -60,6 +60,11 @@ export const studyCategories = [
     description: 'Linux, 배포, 클라우드, 관측 가능성, 자동화'
   },
   {
+    id: 'devops',
+    label: 'DevOps',
+    description: 'Lean, Agile, DevOps, 개발 프로세스, 배포 흐름, 피드백 루프에 대한 정리'
+  },
+  {
     id: 'ai',
     label: 'AI',
     description: 'AI 도구 활용, 모델 API, 자동화 실험 기록'

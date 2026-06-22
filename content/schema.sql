@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS study_posts (
   date TEXT NOT NULL,
   summary TEXT NOT NULL,
   body TEXT NOT NULL,
+  position INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (category, slug)
 );
 

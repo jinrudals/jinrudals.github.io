@@ -26,7 +26,7 @@ function lines(value) {
 const postRows = query(`
   SELECT slug, category, title, date, summary, body
   FROM study_posts
-  ORDER BY date DESC, category ASC, slug ASC;
+  ORDER BY date DESC, category ASC, position ASC, slug ASC;
 `);
 
 const tagRows = query(`

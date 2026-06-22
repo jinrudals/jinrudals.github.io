@@ -25,11 +25,11 @@
         반도체 개발 환경에서 CI, 자동화, 검증 인프라를 다뤄왔고, 그 경험을 바탕으로
         DevOps/SRE 영역을 공부하고 기록합니다.
       </p>
-      <div class="actions" aria-label="Primary links">
+      <nav class="actions" aria-label="Primary links">
         <a class="primary" href="/study">Study</a>
         <a href="/projects">Projects</a>
         <a href="/career">Career</a>
-      </div>
+      </nav>
     </div>
     <div class="signal" aria-label="Current direction">
       <span>Reliability</span>

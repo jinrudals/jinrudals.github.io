@@ -101,6 +101,11 @@ test('landing project groups preview work systems and personal projects', () => 
     ['Work Systems', 'Personal Projects']
   );
 
+  assert.deepEqual(
+    landingProjectGroups.map((group) => group.href),
+    ['/projects', '/projects']
+  );
+
   assert.deepEqual(landingProjectGroups[0].items, [
     'MR CI stability',
     'YAML Jenkins pipeline',

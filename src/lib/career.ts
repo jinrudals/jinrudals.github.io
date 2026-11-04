@@ -12,7 +12,7 @@ export const career: Career[] = [
   {
     company: '한온시스템',
     team: ['Platform SW 팀 (차량 Embedded SW 플랫폼)'],
-    start: '2026-09',
+    start: '2026-08',
     summary: '글로벌 cloud-native DevOps 환경 구축',
     highlights: ['AWS, Terraform 기반 글로벌 DevOps 환경 구축'],
     stack: ['AWS', 'Terraform']

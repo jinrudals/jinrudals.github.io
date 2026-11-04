@@ -123,8 +123,9 @@ export function switchPath(pathname: string, to: Lang): string {
 
 export function detectRedirect(args: { pathname: string; stored: string | null; browser: string }): string | null {
   const { pathname, stored, browser } = args;
-  const wanted: Lang =
-    stored === 'ko' || stored === 'en' ? stored : browser.toLowerCase().startsWith('en') ? 'en' : 'ko';
+  const wanted: Lang | null =
+    stored === 'ko' || stored === 'en' ? stored : browser.toLowerCase().startsWith('en') ? 'en' : null;
+  if (!wanted) return null;
   const target = switchPath(pathname, wanted);
   return target === pathname ? null : target;
 }

@@ -1,10 +1,10 @@
 import { error } from '@sveltejs/kit';
-import { getEntry, listEntries } from '$lib/content';
+import { getEntry, slugEntries } from '$lib/content';
 
-export const entries = () => listEntries('writing').map(({ slug }) => ({ slug }));
+export const entries = () => slugEntries('writing');
 
 export function load({ params }) {
-  const entry = getEntry('writing', params.slug);
+  const entry = getEntry('writing', params.slug, params.lang === 'en' ? 'en' : 'ko');
   if (!entry) error(404, 'Not found');
   return entry;
 }

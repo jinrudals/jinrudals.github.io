@@ -4,7 +4,7 @@
   import { localePath, t, type Lang } from '$lib/i18n';
   let { data } = $props();
   const lang = $derived(data.lang as Lang);
-  const recent = $derived(listEntries('writing').slice(0, 5));
+  const recent = $derived(listEntries('writing', lang).slice(0, 5));
   const focus = [1, 2, 3];
 </script>
 

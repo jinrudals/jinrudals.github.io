@@ -9,7 +9,7 @@
         const stored = localStorage.getItem('lang');
         const p = location.pathname;
         const isEn = /^\/en(\/|$)/.test(p);
-        const want = stored === 'ko' || stored === 'en' ? stored : navigator.language.toLowerCase().startsWith('en') ? 'en' : 'ko';
+        const want = stored === 'ko' || stored === 'en' ? stored : navigator.language.toLowerCase().startsWith('en') ? 'en' : null;
         if (want === 'en' && !isEn) location.replace('/en' + (p === '/' ? '' : p) + location.search + location.hash);
         else if (want === 'ko' && isEn) location.replace((p.replace(/^\/en/, '') || '/') + location.search + location.hash);
       })();

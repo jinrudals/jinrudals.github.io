@@ -24,6 +24,7 @@ test('detectRedirect follows stored choice, then browser language', () => {
   assert.equal(detectRedirect({ pathname: '/en', stored: null, browser: 'en-US' }), null);
   assert.equal(detectRedirect({ pathname: '/', stored: null, browser: 'ko-KR' }), null);
   assert.equal(detectRedirect({ pathname: '/writing', stored: 'ko', browser: 'en-US' }), null);
+  assert.equal(detectRedirect({ pathname: '/en/writing', stored: null, browser: 'ko-KR' }), null);
 });
 
 test('t falls back to ko then key', () => {

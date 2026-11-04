@@ -7,6 +7,8 @@
   const origin = 'https://jinrudals.github.io';
   const keys = ['writing', 'study', 'projects', 'career', 'resume', 'notes', 'about'];
   const barePath = $derived(switchPath(page.url.pathname, 'ko'));
+  // an English-only post has no Korean page to switch to
+  const koMissing = $derived(Array.isArray(page.data.langs) && !page.data.langs.includes('ko'));
   function toggleTheme() {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
@@ -18,9 +20,11 @@
 </script>
 
 <svelte:head>
-  <link rel="alternate" hreflang="ko" href={origin + switchPath(page.url.pathname, 'ko')} />
+  {#if !koMissing}
+    <link rel="alternate" hreflang="ko" href={origin + switchPath(page.url.pathname, 'ko')} />
+    <link rel="alternate" hreflang="x-default" href={origin + switchPath(page.url.pathname, 'ko')} />
+  {/if}
   <link rel="alternate" hreflang="en" href={origin + switchPath(page.url.pathname, 'en')} />
-  <link rel="alternate" hreflang="x-default" href={origin + switchPath(page.url.pathname, 'ko')} />
 </svelte:head>
 
 <header class="site-header"><div class="site-header-inner">
@@ -33,11 +37,15 @@
   </nav>
   <span class="lang-switch">
     {#each ['ko', 'en'] as const as l}
-      <a
-        href={switchPath(page.url.pathname, l)}
-        aria-current={lang === l ? 'true' : undefined}
-        data-sveltekit-reload
-        onclick={() => localStorage.setItem('lang', l)}>{l.toUpperCase()}</a>
+      {#if l === 'ko' && koMissing}
+        <span aria-disabled="true">KO</span>
+      {:else}
+        <a
+          href={switchPath(page.url.pathname, l)}
+          aria-current={lang === l ? 'true' : undefined}
+          data-sveltekit-reload
+          onclick={() => localStorage.setItem('lang', l)}>{l.toUpperCase()}</a>
+      {/if}
     {/each}
   </span>
   <button class="theme" onclick={toggleTheme} aria-label={t(lang, 'theme')}>◐</button>

@@ -4,7 +4,7 @@
   import { t, type Lang } from '$lib/i18n';
   let { data } = $props();
   const lang = $derived(data.lang as Lang);
-  const entries = $derived(listEntries('notes'));
+  const entries = $derived(listEntries('notes', lang));
 </script>
 
 <svelte:head><title>{t(lang, 'notes.title')} · jinrudals</title></svelte:head>

@@ -1,28 +1,3 @@
-<script lang="ts">
-  import { career } from '$lib/career';
-</script>
-
 <svelte:head><title>이력서 · 진경민</title></svelte:head>
 <h1>이력서</h1>
-
-<section id="career">
-  <h2>경력</h2>
-  {#if career.length === 0}
-    <p class="muted">준비 중입니다.</p>
-  {:else}
-    <ol class="career">
-      {#each career as c (c.company + c.start)}
-        <li>
-          <strong>{c.company}</strong> · {c.role}
-          <div class="muted">{c.start} – {c.end ?? '현재'}</div>
-          {#if c.summary}<p>{c.summary}</p>{/if}
-          {#if c.highlights?.length}
-            <ul>
-              {#each c.highlights as h}<li>{h}</li>{/each}
-            </ul>
-          {/if}
-        </li>
-      {/each}
-    </ol>
-  {/if}
-</section>
+<p class="muted">준비 중입니다. 경력은 <a href="/career">경력</a> 페이지에서 볼 수 있습니다.</p>

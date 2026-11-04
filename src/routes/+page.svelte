@@ -3,9 +3,9 @@
   import { listEntries } from '$lib/content';
   const recent = listEntries('writing').slice(0, 5);
   const focus = [
-    ['자동화와 CI/CD', 'Jenkins 파이프라인과 shared library, 이후 정식 jenkinsci plugin으로 발전한 도구들.'],
-    ['플랫폼과 인프라', 'SLURM, Kubernetes, Rook-Ceph, AWS와 Terraform으로 개발자가 기댈 기반을 만듭니다.'],
-    ['개발자 도구', 'Django, Kafka 기반 내부 시스템부터 MCP gateway, LLM proxy 같은 AI 도구까지.']
+    ['자동화와 CI/CD', 'Jenkins 파이프라인, shared library, 정식 jenkinsci plugin으로 발전한 도구'],
+    ['플랫폼과 인프라', 'SLURM, Kubernetes, Rook-Ceph, AWS, Terraform 기반의 개발 환경'],
+    ['개발자 도구', 'Django, Kafka 기반 내부 시스템부터 MCP gateway, LLM proxy 같은 AI 도구까지']
   ];
 </script>
 
@@ -13,9 +13,9 @@
 
 <section class="hero">
   <p class="eyebrow">Gyeongmin Jin · Benjamin</p>
-  <h1>개발자가 만드는 일에 집중하도록,<br />플랫폼을 만듭니다.</h1>
+  <h1>개발자가 만드는 일에 집중하도록,<br />플랫폼을 만드는 엔지니어</h1>
   <p class="lead">
-    플랫폼·DevOps 엔지니어 진경민입니다. 자동화, 인프라, 개발자 도구를 만들고 그 과정에서 배운 것을 글로 남깁니다.
+    플랫폼·DevOps 엔지니어 진경민. 자동화, 인프라, 개발자 도구를 만들고 그 과정에서 배운 것을 글로 기록
   </p>
   <div class="cta">
     <a class="btn primary" href="/writing">글 읽기</a>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Entry } from '$lib/content';
-  let { entries, empty = '아직 글이 없습니다.' }: { entries: Entry[]; empty?: string } = $props();
+  let { entries, empty = '아직 글이 없음' }: { entries: Entry[]; empty?: string } = $props();
 </script>
 
 {#if entries.length === 0}

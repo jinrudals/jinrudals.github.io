@@ -1,31 +1,46 @@
 <script lang="ts">
   import '../app.css';
   import { page } from '$app/state';
-  let { children } = $props();
+  import { localePath, switchPath, t, type Lang } from '$lib/i18n';
+  let { children, data } = $props();
+  const lang = $derived(data.lang as Lang);
+  const origin = 'https://jinrudals.github.io';
+  const keys = ['writing', 'study', 'projects', 'career', 'resume', 'notes', 'about'];
+  const barePath = $derived(switchPath(page.url.pathname, 'ko'));
   function toggleTheme() {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
   }
-  const nav = [
-    ['/writing', '글'],
-    ['/study', '스터디'],
-    ['/projects', '프로젝트'],
-    ['/career', '경력'],
-    ['/resume', '이력서'],
-    ['/notes', '노트'],
-    ['/about', '소개']
-  ];
+  $effect(() => {
+    document.documentElement.lang = lang;
+  });
 </script>
 
+<svelte:head>
+  <link rel="alternate" hreflang="ko" href={origin + switchPath(page.url.pathname, 'ko')} />
+  <link rel="alternate" hreflang="en" href={origin + switchPath(page.url.pathname, 'en')} />
+  <link rel="alternate" hreflang="x-default" href={origin + switchPath(page.url.pathname, 'ko')} />
+</svelte:head>
+
 <header class="site-header"><div class="site-header-inner">
-  <a class="brand" href="/">jinrudals</a>
+  <a class="brand" href={localePath(lang, '/')}>jinrudals</a>
   <nav>
-    {#each nav as [href, label]}
-      <a {href} aria-current={page.url.pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
+    {#each keys as k}
+      {@const href = `/${k}`}
+      <a href={localePath(lang, href)} aria-current={barePath.startsWith(href) ? 'page' : undefined}>{t(lang, `nav.${k}`)}</a>
     {/each}
   </nav>
-  <button class="theme" onclick={toggleTheme} aria-label="테마 전환">◐</button>
+  <span class="lang-switch">
+    {#each ['ko', 'en'] as const as l}
+      <a
+        href={switchPath(page.url.pathname, l)}
+        aria-current={lang === l ? 'true' : undefined}
+        data-sveltekit-reload
+        onclick={() => localStorage.setItem('lang', l)}>{l.toUpperCase()}</a>
+    {/each}
+  </span>
+  <button class="theme" onclick={toggleTheme} aria-label={t(lang, 'theme')}>◐</button>
 </div></header>
 <main class="page">{@render children()}</main>
-<footer class="site-footer">© jinrudals</footer>
+<footer class="site-footer">{t(lang, 'footer')}</footer>

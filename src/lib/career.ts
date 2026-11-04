@@ -10,6 +10,19 @@ export interface Career {
 // Add entries here, newest first.
 export const career: Career[] = [
   {
+    company: '보스반도체',
+    role: '개발 환경 · 플랫폼 엔지니어',
+    start: '2023-08',
+    end: '2026-05',
+    summary: '설계 검증과 품질 관리를 위한 사내 시스템을 만들고, 마지막에는 사내 AI 도입을 위한 도구를 조사했습니다.',
+    highlights: [
+      'Design Verification Regression System 개발: regression 실행과 리포트 환경 (Django, Webhook, Kafka)',
+      '이후 유사한 구조로 Design Quality System 개발',
+      'SLURM 앞단에서 회사 정책을 적용하는 Task Manager 설계 (구현은 후배 담당)',
+      '사내 AI 활용을 위한 도구(MCP gateway, LLM proxy 등) 탐색 및 조사'
+    ]
+  },
+  {
     company: 'SemiFive',
     role: 'CI/CD · 개발 환경 엔지니어 (입사 당시 SoC 설계 직무)',
     start: '2020-02',

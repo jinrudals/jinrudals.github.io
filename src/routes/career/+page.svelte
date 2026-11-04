@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { career } from '$lib/career';
+  import { career, education } from '$lib/career';
 </script>
 
 <svelte:head><title>경력 · 진경민</title></svelte:head>
@@ -24,4 +24,13 @@
       {/each}
     </ol>
   {/if}
+</section>
+
+<section id="education">
+  <h2>학력</h2>
+  <ul class="plain">
+    {#each education as e (e.school)}
+      <li><strong>{e.school}</strong> · {e.major} <span class="muted">{e.start} – {e.end}</span></li>
+    {/each}
+  </ul>
 </section>

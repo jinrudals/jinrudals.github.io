@@ -62,3 +62,4 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 .tags { display: flex; gap: .4rem; flex-wrap: wrap; }
 .tag { font-size: .8rem; color: var(--accent); }
 .about-teaser { margin-top: 3.5rem; padding: 1.5rem; background: var(--accent-soft); border-radius: 16px; }
+.plain { list-style: none; padding: 0; }

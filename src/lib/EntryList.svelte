@@ -10,9 +10,10 @@
     {#each entries as e (e.slug)}
       <li>
         <a href="/{e.section}/{e.slug}">
+          <time>{e.date} · {e.readMinutes}분 읽기</time>
           <strong>{e.title}</strong>
-          <time>{e.date}</time>
           {#if e.summary}<span class="muted">{e.summary}</span>{/if}
+          {#if e.tags?.length}<span class="tags">{#each e.tags as t}<span class="tag">#{t}</span>{/each}</span>{/if}
         </a>
       </li>
     {/each}

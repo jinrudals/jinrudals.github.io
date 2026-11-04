@@ -6,7 +6,7 @@
 
 <article class="prose">
   <a class="muted" href="/{meta.section}">← 목록</a>
+  <time class="muted">{meta.date} · {meta.readMinutes}분 읽기</time>
   <h1>{meta.title}</h1>
-  <time class="muted">{meta.date}</time>
   <Body />
 </article>

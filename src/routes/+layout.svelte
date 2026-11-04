@@ -19,7 +19,7 @@
 </script>
 
 <header class="site-header"><div class="site-header-inner">
-  <a class="brand" href="/">진경민</a>
+  <a class="brand" href="/">jinrudals</a>
   <nav>
     {#each nav as [href, label]}
       <a {href} aria-current={page.url.pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
@@ -28,4 +28,4 @@
   <button class="theme" onclick={toggleTheme} aria-label="테마 전환">◐</button>
 </div></header>
 <main class="page">{@render children()}</main>
-<footer class="site-footer">© 진경민 (Gyeongmin Jin)</footer>
+<footer class="site-footer">© jinrudals</footer>

@@ -9,13 +9,13 @@
   ];
 </script>
 
-<svelte:head><title>진경민 (Gyeongmin Jin)</title></svelte:head>
+<svelte:head><title>jinrudals · 진경민</title></svelte:head>
 
 <section class="hero">
-  <p class="eyebrow">Gyeongmin Jin · Benjamin</p>
+  <p class="eyebrow">jinrudals · 진경민 (Gyeongmin Jin, Benjamin)</p>
   <h1>개발자가 만드는 일에 집중하도록,<br />플랫폼을 만드는 엔지니어</h1>
   <p class="lead">
-    플랫폼·DevOps 엔지니어 진경민. 자동화, 인프라, 개발자 도구를 만들고 그 과정에서 배운 것을 글로 기록
+    플랫폼·DevOps 엔지니어. 자동화, 인프라, 개발자 도구를 만들고 그 과정에서 배운 것을 글로 기록
   </p>
   <div class="cta">
     <a class="btn primary" href="/writing">글 읽기</a>

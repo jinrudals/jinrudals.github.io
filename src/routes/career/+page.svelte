@@ -2,7 +2,7 @@
   import { career, education } from '$lib/career';
 </script>
 
-<svelte:head><title>경력 · 진경민</title></svelte:head>
+<svelte:head><title>경력 · jinrudals</title></svelte:head>
 <div class="prose">
   <h1>경력</h1>
 

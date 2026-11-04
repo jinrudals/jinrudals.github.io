@@ -2,19 +2,33 @@
   import EntryList from '$lib/EntryList.svelte';
   import { listEntries } from '$lib/content';
   const recent = listEntries('writing').slice(0, 5);
+  const focus = [
+    ['자동화와 CI/CD', 'Jenkins 파이프라인과 shared library, 이후 정식 jenkinsci plugin으로 발전한 도구들.'],
+    ['플랫폼과 인프라', 'SLURM, Kubernetes, Rook-Ceph, AWS와 Terraform으로 개발자가 기댈 기반을 만듭니다.'],
+    ['개발자 도구', 'Django, Kafka 기반 내부 시스템부터 MCP gateway, LLM proxy 같은 AI 도구까지.']
+  ];
 </script>
 
 <svelte:head><title>진경민 (Gyeongmin Jin)</title></svelte:head>
 
 <section class="hero">
   <p class="eyebrow">Gyeongmin Jin · Benjamin</p>
-  <h1>제조업 현장에서,<br />DevOps를 다시 생각합니다.</h1>
-  <p class="lead">현장(OT)과 IT 사이의 피드백 루프를 짧게 만드는 일에 대해 쓰고 만듭니다.</p>
+  <h1>개발자가 만드는 일에 집중하도록,<br />플랫폼을 만듭니다.</h1>
+  <p class="lead">
+    플랫폼·DevOps 엔지니어 진경민입니다. 자동화, 인프라, 개발자 도구를 만들고 그 과정에서 배운 것을 글로 남깁니다.
+  </p>
   <div class="cta">
     <a class="btn primary" href="/writing">글 읽기</a>
-    <a class="btn" href="/projects">프로젝트 보기</a>
+    <a class="btn" href="/career">경력 보기</a>
     <a class="btn" href="/about">소개</a>
   </div>
+</section>
+
+<div class="section-head"><h2>하는 일</h2></div>
+<section class="cards">
+  {#each focus as [title, desc]}
+    <div class="card"><strong>{title}</strong><span>{desc}</span></div>
+  {/each}
 </section>
 
 <div class="section-head">
@@ -22,9 +36,3 @@
   <a href="/writing">전체 보기 →</a>
 </div>
 <EntryList entries={recent} />
-
-<section class="about-teaser">
-  <strong>진경민</strong>
-  <p>제조업 DevOps를 고민하는 엔지니어입니다. 스터디 노트, 프로젝트, 경력도 이곳에 모읍니다.</p>
-  <a href="/about">더 알아보기 →</a>
-</section>

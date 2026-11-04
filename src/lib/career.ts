@@ -10,6 +10,13 @@ export interface Career {
 // Add entries here, newest first.
 export const career: Career[] = [
   {
+    company: '한온시스템',
+    role: 'DevOps 엔지니어',
+    start: '2026-09',
+    summary: '글로벌 cloud-native DevOps 환경을 구축하고 있습니다.',
+    highlights: ['AWS, Terraform 기반 글로벌 DevOps 환경 구축']
+  },
+  {
     company: '오픈엣지코리아',
     role: '인프라 엔지니어',
     start: '2026-05',

@@ -18,3 +18,5 @@ a { color: var(--accent); }
 .entries a { display: grid; gap: .15rem; padding: .75rem 0; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
 .prose svg, .prose img { max-width: 100%; height: auto; }
 .prose pre { overflow-x: auto; padding: 1rem; background: #fffdf8; border: 1px solid var(--line); }
+.career { list-style: none; padding: 0; }
+.career > li { padding: 1rem 0; border-bottom: 1px solid var(--line); }

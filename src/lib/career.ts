@@ -10,6 +10,14 @@ export interface Career {
 // Add entries here, newest first.
 export const career: Career[] = [
   {
+    company: '오픈엣지코리아',
+    role: '인프라 엔지니어',
+    start: '2026-05',
+    end: '2026-08',
+    summary: '짧은 기간 근무하며 Kubernetes 기반 병렬 파일 시스템 도입을 마무리했습니다.',
+    highlights: ['Kubernetes 위에 Rook-Ceph(병렬 파일 시스템) 적용']
+  },
+  {
     company: '보스반도체',
     role: '개발 환경 · 플랫폼 엔지니어',
     start: '2023-08',
@@ -19,6 +27,7 @@ export const career: Career[] = [
       'Design Verification Regression System 개발: regression 실행과 리포트 환경 (Django, Webhook, Kafka)',
       '이후 유사한 구조로 Design Quality System 개발',
       'SLURM 앞단에서 회사 정책을 적용하는 Task Manager 설계 (구현은 후배 담당)',
+      'BeeGFS 직접 탐색 및 운영',
       '사내 AI 활용을 위한 도구(MCP gateway, LLM proxy 등) 탐색 및 조사'
     ]
   },

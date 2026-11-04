@@ -1,46 +1,34 @@
-<script>
-  import { careerLinks } from '$lib/content.js';
+<script lang="ts">
+  import { career, education } from '$lib/career';
 </script>
 
-<svelte:head>
-  <title>Career | jinrudals</title>
-  <meta name="description" content="Resume, cover letter, and portfolio hub." />
-</svelte:head>
+<svelte:head><title>경력 · 진경민</title></svelte:head>
+<div class="prose">
+  <h1>경력</h1>
 
-<main class="page">
-  <section>
-    <p class="eyebrow">Career</p>
-    <h1>커리어 문서</h1>
-    <p class="lede">이력서, 자기소개서, 제출용 포트폴리오를 분리해서 관리합니다.</p>
-  </section>
+  <ol class="career">
+    {#each career as c (c.company)}
+      <li>
+        <div class="career-head">
+          <strong>{c.company}</strong>
+          <span class="muted">{c.start} – {c.end ?? '현재'}</span>
+        </div>
+        <div class="muted">{c.team.join(' → ')}</div>
+        <p class="career-summary">{c.summary}</p>
+        <ul>
+          {#each c.highlights as h}<li>{h}</li>{/each}
+        </ul>
+        <div class="tags">
+          {#each c.stack as s}<span class="chip">{s}</span>{/each}
+        </div>
+      </li>
+    {/each}
+  </ol>
 
-  <section class="section">
-    <div class="grid three">
-      {#each careerLinks as item}
-        <a class="card link-card" href={item.href}>
-          <h2>{item.label}</h2>
-          <p>{item.description}</p>
-        </a>
-      {/each}
-    </div>
-  </section>
-</main>
-
-<style>
-  h1 {
-    margin: 0;
-    color: var(--ink);
-    font-size: clamp(3rem, 8vw, 5.8rem);
-    line-height: 1;
-    letter-spacing: 0;
-  }
-
-  h2 {
-    font-size: 1.35rem;
-  }
-
-  .link-card {
-    color: inherit;
-    text-decoration: none;
-  }
-</style>
+  <h2>학력</h2>
+  <ul class="plain">
+    {#each education as e (e.school)}
+      <li><strong>{e.school}</strong> · {e.major} <span class="muted">{e.start} – {e.end}</span></li>
+    {/each}
+  </ul>
+</div>

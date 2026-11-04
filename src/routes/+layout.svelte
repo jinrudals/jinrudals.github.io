@@ -12,7 +12,7 @@
 </script>
 
 <header class="site-header">
-  <a class="brand" href="/">jinrudals</a>
+  <a class="brand" href="/">진경민</a>
   <nav>
     {#each nav as [href, label]}
       <a {href} aria-current={page.url.pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
@@ -20,4 +20,4 @@
   </nav>
 </header>
 <main class="page">{@render children()}</main>
-<footer class="site-footer">© jinrudals</footer>
+<footer class="site-footer">© 진경민 (Gyeongmin Jin)</footer>

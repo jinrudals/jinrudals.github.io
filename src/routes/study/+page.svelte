@@ -4,7 +4,7 @@
   const entries = listEntries('study');
 </script>
 
-<svelte:head><title>스터디 · jinrudals</title></svelte:head>
+<svelte:head><title>스터디 · 진경민</title></svelte:head>
 <h1>스터디</h1>
 <p class="muted">짧은 학습 노트.</p>
 <EntryList {entries} />

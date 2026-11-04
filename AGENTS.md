@@ -11,7 +11,14 @@ This repository contains the SvelteKit source for `jinrudals.github.io`.
 
 ## Content
 
-Posts are Markdown (mdsvex) files with frontmatter (`title`, `date`, `summary`, `tags`, `draft`) under `src/content/<section>/<slug>.md`. Svelte components can be used inside them, and ```` ```mermaid ```` blocks render to inline SVG.
+Posts are Markdown (mdsvex) files with frontmatter (`title`, `date`, `summary`, `tags`, `draft`) under `src/content/<section>/<slug>.md` (Korean, default) and optionally `<slug>.en.md` (English). Untranslated posts are shown in Korean under `/en/` with a notice; the English list only shows posts that have an English file. Svelte components can be used inside them, and ```` ```mermaid ```` blocks render to inline SVG.
+
+## i18n
+
+- Languages: `ko` (default, `/...`) and `en` (`/en/...`) via the optional route param `[[lang=lang]]`.
+- UI strings live in `src/lib/i18n.ts` (`t`, `localePath`, `switchPath`); localized data (e.g. `src/lib/career.ts`) uses `{ ko, en }` values.
+- First visit with an English browser redirects to `/en/...` (inline script in `src/app.html`); the header `KO | EN` toggle stores the choice in `localStorage.lang`.
+- `npm test` runs the pure-function tests (`src/lib/*.test.ts`) with the Node test runner.
 
 ## Routing
 

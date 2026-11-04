@@ -4,4 +4,4 @@
 </script>
 
 <svelte:head><title>{data.meta.title} · jinrudals</title></svelte:head>
-<Article meta={data.meta} component={data.component} />
+<Article meta={data.meta} component={data.component} lang={data.lang} />

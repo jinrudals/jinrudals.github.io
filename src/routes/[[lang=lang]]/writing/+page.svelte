@@ -1,10 +1,13 @@
 <script lang="ts">
   import EntryList from '$lib/EntryList.svelte';
   import { listEntries } from '$lib/content';
-  const entries = listEntries('writing');
+  import { t, type Lang } from '$lib/i18n';
+  let { data } = $props();
+  const lang = $derived(data.lang as Lang);
+  const entries = $derived(listEntries('writing'));
 </script>
 
-<svelte:head><title>글 · jinrudals</title></svelte:head>
-<h1>글</h1>
-<p class="muted">엔지니어링과 DevOps에 대한 고찰과 에세이.</p>
-<EntryList {entries} />
+<svelte:head><title>{t(lang, 'writing.title')} · jinrudals</title></svelte:head>
+<h1>{t(lang, 'writing.title')}</h1>
+<p class="muted">{t(lang, 'writing.blurb')}</p>
+<EntryList {entries} {lang} />

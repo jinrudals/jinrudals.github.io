@@ -70,3 +70,7 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 .career-summary { margin: .5rem 0; font-weight: 600; }
 .career ul { padding-left: 1.1rem; margin: .5rem 0 .75rem; }
 .chip { font-size: .8rem; padding: .1rem .6rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.chips { display: flex; gap: .5rem; margin: 1rem 0; }
+.chips button { font: inherit; font-size: .85rem; padding: .2rem .7rem; border: 1px solid var(--accent); border-radius: 999px; background: none; color: var(--accent); cursor: pointer; }
+.chips button.active { background: var(--accent); color: var(--bg, #fff); }
+.kind { margin-left: .5rem; font-size: .75rem; font-weight: normal; color: var(--accent); }

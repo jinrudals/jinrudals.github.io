@@ -12,7 +12,7 @@
       <li>
         <a href={localePath(lang, `/${e.section}/${e.slug}`)}>
           <time>{e.date} · {t(lang, 'entry.read').replace('{n}', String(e.readMinutes))}</time>
-          <strong>{e.title}</strong>
+          <strong>{e.title}{#if e.kind}<span class="kind kind-{e.kind}">{t(lang, `kind.${e.kind}`)}</span>{/if}</strong>
           {#if e.summary}<span class="muted">{e.summary}</span>{/if}
           {#if e.tags?.length}<span class="tags">{#each e.tags as t}<span class="tag">#{t}</span>{/each}</span>{/if}
         </a>

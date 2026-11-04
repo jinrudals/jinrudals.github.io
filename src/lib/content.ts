@@ -1,5 +1,5 @@
 import type { Component } from 'svelte';
-import { langsOf, listFor, parseName, pick } from './content-select';
+import { langsOf, listFor, parseName, pick, type Kind } from './content-select';
 import type { Lang } from './i18n';
 
 export type Section = 'writing' | 'study' | 'notes' | 'projects';
@@ -10,6 +10,9 @@ export interface Meta {
   summary?: string;
   tags?: string[];
   draft?: boolean;
+  kind?: Kind;
+  role?: string;
+  links?: { label: string; url: string }[];
 }
 
 export interface Timed { readMinutes: number }

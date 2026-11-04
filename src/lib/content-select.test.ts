@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { langsOf, listFor, parseName, pick } from './content-select.ts';
+import { filterByKind, langsOf, listFor, parseName, pick } from './content-select.ts';
 
 const items = [
   { slug: 'a', lang: 'ko' as const, value: 'a-ko' },
@@ -36,4 +36,11 @@ test('langsOf lists the languages a slug exists in', () => {
   assert.deepEqual(langsOf(items, 'a'), ['ko', 'en']);
   assert.deepEqual(langsOf(items, 'c'), ['en']);
   assert.deepEqual(langsOf(items, 'zzz'), []);
+});
+
+test('filterByKind keeps only the chosen kind, or everything for "all"', () => {
+  const list = [{ kind: 'work' }, { kind: 'personal' }, {}];
+  assert.equal(filterByKind(list, 'all').length, 3);
+  assert.deepEqual(filterByKind(list, 'work'), [{ kind: 'work' }]);
+  assert.deepEqual(filterByKind(list, 'personal'), [{ kind: 'personal' }]);
 });

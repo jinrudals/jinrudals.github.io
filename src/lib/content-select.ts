@@ -25,3 +25,9 @@ export function listFor<T>(items: Item<T>[], lang: Lang): T[] {
 export function langsOf<T>(items: Item<T>[], slug: string): Lang[] {
   return items.filter((i) => i.slug === slug).map((i) => i.lang);
 }
+
+export type Kind = 'work' | 'personal';
+
+export function filterByKind<T extends { kind?: Kind }>(list: T[], kind: Kind | 'all'): T[] {
+  return kind === 'all' ? list : list.filter((i) => i.kind === kind);
+}

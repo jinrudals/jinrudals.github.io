@@ -1,4 +1,6 @@
 import type { Component } from 'svelte';
+import { langsOf, listFor, parseName, pick } from './content-select';
+import type { Lang } from './i18n';
 
 export type Section = 'writing' | 'study' | 'notes' | 'projects';
 
@@ -35,17 +37,37 @@ const readMinutes = (path: string) => {
   return Math.max(1, Math.round(text.replace(/\s+/g, '').length / 500));
 };
 
-const slugOf = (path: string) => path.split('/').pop()!.replace(/\.md$/, '');
-
-export function listEntries(section: Section): Entry[] {
+function published(section: Section) {
   return Object.entries(modules[section])
-    .map(([path, m]) => ({ ...m.metadata, date: toDate(m.metadata.date), readMinutes: readMinutes(path), slug: slugOf(path), section }))
-    .filter((e) => !e.draft)
+    .filter(([, m]) => !m.metadata.draft)
+    .map(([path, m]) => ({ ...parseName(path), value: { path, mod: m } }));
+}
+
+function toEntry(section: Section, slug: string, path: string, m: Mod): Entry {
+  return { ...m.metadata, date: toDate(m.metadata.date), readMinutes: readMinutes(path), slug, section };
+}
+
+export function listEntries(section: Section, lang: Lang = 'ko'): Entry[] {
+  return published(section)
+    .filter((i) => i.lang === lang)
+    .map((i) => toEntry(section, i.slug, i.value.path, i.value.mod))
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
-export function getEntry(section: Section, slug: string) {
-  const hit = Object.entries(modules[section]).find(([p]) => slugOf(p) === slug);
+export function getEntry(section: Section, slug: string, lang: Lang = 'ko') {
+  const items = published(section);
+  const hit = pick(items, slug, lang);
   if (!hit) return undefined;
-  return { component: hit[1].default, meta: { ...hit[1].metadata, date: toDate(hit[1].metadata.date), readMinutes: readMinutes(hit[0]), slug, section } as Entry };
+  const { path, mod } = hit.value;
+  return { component: mod.default, meta: toEntry(section, slug, path, mod), fellBack: hit.fellBack, langs: langsOf(items, slug) };
+}
+
+// route params for prerendering `[[lang=lang]]/<section>/[slug]`
+export function slugEntries(section: Section) {
+  const ko = listFor(published(section), 'ko').map((v) => parseName(v.path).slug);
+  const en = listFor(published(section), 'en').map((v) => parseName(v.path).slug);
+  return [
+    ...ko.map((slug) => ({ lang: '', slug })),
+    ...[...new Set([...ko, ...en])].map((slug) => ({ lang: 'en', slug }))
+  ];
 }

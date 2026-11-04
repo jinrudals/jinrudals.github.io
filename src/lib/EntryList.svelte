@@ -1,16 +1,17 @@
 <script lang="ts">
   import type { Entry } from '$lib/content';
-  let { entries, empty = '아직 글이 없음' }: { entries: Entry[]; empty?: string } = $props();
+  import { localePath, t, type Lang } from '$lib/i18n';
+  let { entries, lang, empty }: { entries: Entry[]; lang: Lang; empty?: string } = $props();
 </script>
 
 {#if entries.length === 0}
-  <p class="muted">{empty}</p>
+  <p class="muted">{empty ?? t(lang, 'entry.empty')}</p>
 {:else}
   <ul class="entries">
     {#each entries as e (e.slug)}
       <li>
-        <a href="/{e.section}/{e.slug}">
-          <time>{e.date} · {e.readMinutes}분 읽기</time>
+        <a href={localePath(lang, `/${e.section}/${e.slug}`)}>
+          <time>{e.date} · {t(lang, 'entry.read').replace('{n}', String(e.readMinutes))}</time>
           <strong>{e.title}</strong>
           {#if e.summary}<span class="muted">{e.summary}</span>{/if}
           {#if e.tags?.length}<span class="tags">{#each e.tags as t}<span class="tag">#{t}</span>{/each}</span>{/if}

@@ -8,11 +8,11 @@
 <article class="prose">
   {#if fellBack}<p class="muted notice">{t(lang, 'article.koOriginal')}</p>{/if}
   <a class="muted" href={localePath(lang, `/${meta.section}`)}>{t(lang, 'article.back')}</a>
-  <time class="muted">{meta.date} · {t(lang, 'entry.read').replace('{n}', String(meta.readMinutes))}</time>
   {#if nav && meta.series}
     <p class="series-badge">{t(lang, `series.${meta.series}`)}{#if meta.part && new Set(nav.items.map((e) => e.part)).size > 1} · {t(lang, `section.${meta.part}`)}{/if} · {nav.index + 1}/{nav.total}</p>
   {/if}
   <h1>{meta.title}</h1>
+  <time class="muted">{meta.date} · {t(lang, 'entry.read').replace('{n}', String(meta.readMinutes))}</time>
   <Body />
   {#if nav && meta.series}
     <nav class="series-nav">

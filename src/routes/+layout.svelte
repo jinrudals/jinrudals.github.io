@@ -17,7 +17,16 @@
   $effect(() => {
     document.documentElement.lang = lang;
   });
+  async function copyCode(e: MouseEvent) {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.code-copy');
+    if (!btn) return;
+    await navigator.clipboard.writeText(btn.parentElement?.querySelector('pre')?.textContent ?? '');
+    btn.textContent = 'Copied';
+    setTimeout(() => (btn.textContent = 'Copy'), 1500);
+  }
 </script>
+
+<svelte:document onclick={copyCode} />
 
 <svelte:head>
   {#if !koMissing}

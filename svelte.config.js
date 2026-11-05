@@ -2,8 +2,10 @@ import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import { createMermaidRenderer } from 'mermaid-isomorphic';
+import { createHighlighter, bundledLanguages } from 'shiki';
 
 const renderMermaid = createMermaidRenderer();
+const shiki = await createHighlighter({ themes: ['github-light', 'github-dark'], langs: [] });
 const escape = (s) => s.replace(/[&<>{}`\\]/g, (c) => `&#${c.charCodeAt(0)};`);
 
 /** @type {import('mdsvex').MdsvexOptions} */
@@ -16,7 +18,16 @@ const mdsvexOptions = {
         if (result.status === 'rejected') throw result.reason;
         return `<div class="mermaid">{@html ${JSON.stringify(result.value.svg)}}</div>`;
       }
-      return `<pre><code class="language-${lang ?? ''}">${escape(code)}</code></pre>`;
+      const known = lang && lang in bundledLanguages;
+      if (known) await shiki.loadLanguage(lang);
+      const html = shiki.codeToHtml(code, {
+        lang: known ? lang : 'text',
+        themes: { light: 'github-light', dark: 'github-dark' },
+        defaultColor: false
+      });
+      const label = lang ? `<span class="code-lang">${escape(lang)}</span>` : '';
+      // braces must be escaped so Svelte does not parse them as expressions
+      return `<div class="codeblock">${label}<button type="button" class="code-copy">Copy</button>${html.replace(/[{}]/g, (c) => `&#${c.charCodeAt(0)};`)}</div>`;
     }
   }
 };

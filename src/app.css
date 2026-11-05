@@ -41,6 +41,14 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 
 .prose { font-size: 1.05rem; max-width: 740px; margin-inline: auto; }
 .prose pre { overflow-x: auto; padding: 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font-size: .9rem; }
+.prose .codeblock { position: relative; margin: 1rem 0; }
+.prose .codeblock pre { margin: 0; padding-top: 1.9rem; }
+.prose .shiki, .prose .shiki span { color: var(--shiki-light); }
+[data-theme='dark'] .prose .shiki, [data-theme='dark'] .prose .shiki span { color: var(--shiki-dark); }
+.prose .shiki { background: var(--surface) !important; }
+.code-lang { position: absolute; top: .4rem; left: .9rem; font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.code-copy { position: absolute; top: .35rem; right: .5rem; border: 1px solid var(--line); background: var(--surface); color: var(--muted); border-radius: 6px; font-size: .75rem; padding: .1rem .5rem; cursor: pointer; opacity: 0; transition: opacity .15s; }
+.codeblock:hover .code-copy, .code-copy:focus-visible { opacity: 1; }
 .prose :not(pre) > code { background: var(--accent-soft); padding: .1em .35em; border-radius: 6px; font-size: .9em; }
 .prose .mermaid { display: flex; justify-content: center; padding: 1rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
 .prose svg, .prose img { max-width: 100%; height: auto; }

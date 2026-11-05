@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { filterByKind, langsOf, listFor, parseName, pick } from './content-select.ts';
+import { filterByKind, groupBySeries, langsOf, listFor, parseName, pick, seriesNav } from './content-select.ts';
 
 const items = [
   { slug: 'a', lang: 'ko' as const, value: 'a-ko' },
@@ -43,4 +43,26 @@ test('filterByKind keeps only the chosen kind, or everything for "all"', () => {
   assert.equal(filterByKind(list, 'all').length, 3);
   assert.deepEqual(filterByKind(list, 'work'), [{ kind: 'work' }]);
   assert.deepEqual(filterByKind(list, 'personal'), [{ kind: 'personal' }]);
+});
+
+const posts = [
+  { slug: 'why', series: 'terraform', part: 'concepts', order: 2 },
+  { slug: 'lab', series: 'terraform', part: 'practice', order: 1 },
+  { slug: 'what', series: 'terraform', part: 'concepts', order: 1 },
+  { slug: 'solo' }
+];
+
+test('seriesNav orders by section then order and links neighbours', () => {
+  const nav = seriesNav(posts, 'terraform', 'why')!;
+  assert.deepEqual(nav.items.map((e) => e.slug), ['what', 'why', 'lab']);
+  assert.equal(nav.prev?.slug, 'what');
+  assert.equal(nav.next?.slug, 'lab');
+  assert.equal(nav.index, 1);
+  assert.equal(seriesNav(posts, 'terraform', 'solo'), undefined);
+});
+
+test('groupBySeries separates standalone posts', () => {
+  const { groups, rest } = groupBySeries(posts);
+  assert.equal(groups.length, 1);
+  assert.deepEqual(rest.map((e) => e.slug), ['solo']);
 });

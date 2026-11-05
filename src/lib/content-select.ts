@@ -31,3 +31,39 @@ export type Kind = 'work' | 'personal';
 export function filterByKind<T extends { kind?: Kind }>(list: T[], kind: Kind | 'all'): T[] {
   return kind === 'all' ? list : list.filter((i) => i.kind === kind);
 }
+
+export interface SeriesFields {
+  slug: string;
+  series?: string;
+  part?: string;
+  order?: number;
+}
+
+// reading order inside a series: part order first, then `order`
+export const SECTION_ORDER = ['concepts', 'practice'];
+
+const sectionRank = (s?: string) => {
+  const i = SECTION_ORDER.indexOf(s ?? '');
+  return i === -1 ? SECTION_ORDER.length : i;
+};
+
+export function seriesItems<T extends SeriesFields>(list: T[], series: string): T[] {
+  return list
+    .filter((e) => e.series === series)
+    .sort((a, b) => sectionRank(a.part) - sectionRank(b.part) || (a.order ?? 0) - (b.order ?? 0));
+}
+
+export function seriesNav<T extends SeriesFields>(list: T[], series: string, slug: string) {
+  const items = seriesItems(list, series);
+  const i = items.findIndex((e) => e.slug === slug);
+  if (i === -1) return undefined;
+  return { items, index: i, total: items.length, prev: items[i - 1], next: items[i + 1] };
+}
+
+export function groupBySeries<T extends SeriesFields>(list: T[]) {
+  const ids = [...new Set(list.flatMap((e) => (e.series ? [e.series] : [])))].sort();
+  return {
+    groups: ids.map((id) => ({ series: id, items: seriesItems(list, id) })),
+    rest: list.filter((e) => !e.series)
+  };
+}

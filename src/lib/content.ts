@@ -1,5 +1,5 @@
 import type { Component } from 'svelte';
-import { langsOf, listFor, parseName, pick, type Kind } from './content-select';
+import { groupBySeries, langsOf, listFor, parseName, pick, seriesNav, type Kind } from './content-select';
 import type { Lang } from './i18n';
 
 export type Section = 'writing' | 'study' | 'notes' | 'projects';
@@ -10,6 +10,9 @@ export interface Meta {
   summary?: string;
   tags?: string[];
   draft?: boolean;
+  series?: string;
+  part?: string;
+  order?: number;
   kind?: Kind;
   role?: string;
   links?: { label: string; url: string }[];
@@ -55,6 +58,23 @@ export function listEntries(section: Section, lang: Lang = 'ko'): Entry[] {
     .filter((i) => i.lang === lang)
     .map((i) => toEntry(section, i.slug, i.value.path, i.value.mod))
     .sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// untranslated posts fall back to Korean so a series stays contiguous in `en`
+function listWithFallback(section: Section, lang: Lang): Entry[] {
+  const items = published(section);
+  return [...new Set(items.map((i) => i.slug))].flatMap((slug) => {
+    const hit = pick(items, slug, lang);
+    return hit ? [toEntry(section, slug, hit.value.path, hit.value.mod)] : [];
+  });
+}
+
+export function seriesNavFor(section: Section, meta: Entry, lang: Lang) {
+  return meta.series ? seriesNav(listWithFallback(section, lang), meta.series, meta.slug) : undefined;
+}
+
+export function listGrouped(section: Section, lang: Lang) {
+  return groupBySeries(listWithFallback(section, lang).sort((a, b) => b.date.localeCompare(a.date)));
 }
 
 export function getEntry(section: Section, slug: string, lang: Lang = 'ko') {

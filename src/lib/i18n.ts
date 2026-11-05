@@ -53,6 +53,12 @@ export const dict: Record<Lang, Record<string, string>> = {
     'about.more': '경력 자세히 보기 →',
     'entry.empty': '아직 글이 없음',
     'entry.read': '{n}분 읽기',
+    'series.terraform': 'Terraform',
+    'section.concepts': '개념',
+    'section.practice': '실습',
+    'series.prev': '← 이전 글',
+    'series.next': '다음 글 →',
+    'series.toc': '시리즈 목차',
     'article.back': '← 목록',
     'article.koOriginal': '이 글은 아직 번역되지 않아 한국어 원문을 보여줍니다.'
   },
@@ -108,6 +114,12 @@ export const dict: Record<Lang, Record<string, string>> = {
     'about.more': 'See career details →',
     'entry.empty': 'No posts yet',
     'entry.read': '{n} min read',
+    'series.terraform': 'Terraform',
+    'section.concepts': 'Concepts',
+    'section.practice': 'Hands-on',
+    'series.prev': '← Previous',
+    'series.next': 'Next →',
+    'series.toc': 'Series contents',
     'article.back': '← Back to list',
     'article.koOriginal': 'This post has not been translated yet, so the Korean original is shown.'
   }

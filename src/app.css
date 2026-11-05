@@ -74,3 +74,13 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 .chips button { font: inherit; font-size: .85rem; padding: .2rem .7rem; border: 1px solid var(--accent); border-radius: 999px; background: none; color: var(--accent); cursor: pointer; }
 .chips button.active { background: var(--accent); color: var(--bg, #fff); }
 .kind { margin-left: .5rem; font-size: .75rem; font-weight: normal; color: var(--accent); }
+
+.series-group { margin-top: 2rem; }
+.series-group h2 { margin: 0 0 .25rem; }
+.series-group h3 { margin: 1rem 0 0; font-size: .95rem; color: var(--accent); }
+.series-badge { color: var(--accent); font-size: .9rem; font-weight: 600; margin: 0; }
+.series-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; }
+.series-nav a { padding: .7rem 1rem; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--ink); max-width: 48%; }
+.series-nav a:hover { border-color: var(--accent); }
+.series-toc { margin-top: 2rem; }
+.series-toc li.current { font-weight: 700; }

@@ -13,6 +13,8 @@ This repository contains the SvelteKit source for `jinrudals.github.io`.
 
 Posts are Markdown (mdsvex) files with frontmatter (`title`, `date`, `summary`, `tags`, `draft`) under `src/content/<section>/<slug>.md` (Korean, default) and optionally `<slug>.en.md` (English). Untranslated posts are shown in Korean under `/en/` with a notice; the English list only shows posts that have an English file. Svelte components can be used inside them, and ```` ```mermaid ```` blocks render to inline SVG.
 
+Study posts can belong to a series via frontmatter: `series` (id, e.g. `terraform`), `part` (e.g. `concepts`, `practice`; order set by `SECTION_ORDER` in `src/lib/content-select.ts`) and `order` (number within the part). Display names live in `src/lib/i18n.ts` as `series.<id>` and `section.<part>`.
+
 ## i18n
 
 - Languages: `ko` (default, `/...`) and `en` (`/en/...`) via the optional route param `[[lang=lang]]`.

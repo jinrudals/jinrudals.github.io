@@ -84,3 +84,9 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 .series-nav a:hover { border-color: var(--accent); }
 .series-toc { margin-top: 2rem; }
 .series-toc li.current { font-weight: 700; }
+
+.entries.row { display: flex; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: .75rem; }
+.entries.row li { flex: 0 0 280px; scroll-snap-align: start; }
+.entries.row a { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: .2rem; }
+.entries.row .muted { display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.entries.row .tags { flex-wrap: nowrap; overflow: hidden; margin-top: auto; padding-top: .4rem; }

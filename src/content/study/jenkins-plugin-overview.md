@@ -4,7 +4,7 @@ date: 2026-11-10
 summary: Jenkins 플러그인이 무엇이고, Jenkins 코어와 어떻게 맞물려 동작하는지 — Extension Point, @Extension, 클래스로더, 패키징(.hpi)까지 큰 그림을 정리합니다.
 tags: [jenkins, plugin, java, architecture]
 series: jenkins
-part: plugin
+part: basics
 order: 1
 draft: false
 ---

@@ -40,7 +40,7 @@ export interface SeriesFields {
 }
 
 // reading order inside a series: part order first, then `order`
-export const SECTION_ORDER = ['concepts', 'practice', 'plugin'];
+export const SECTION_ORDER = ['concepts', 'practice', 'basics', 'core', 'pipeline', 'release', 'ops', 'case', 'appendix'];
 
 const sectionRank = (s?: string) => {
   const i = SECTION_ORDER.indexOf(s ?? '');

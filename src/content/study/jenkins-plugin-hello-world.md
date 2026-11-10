@@ -4,7 +4,7 @@ date: 2026-11-10
 summary: JDK와 Maven을 준비하고 아키타입으로 플러그인 프로젝트를 만든 뒤, mvn hpi:run으로 개발용 Jenkins에서 직접 실행해 봅니다.
 tags: [jenkins, plugin, maven, java]
 series: jenkins
-part: plugin
+part: basics
 order: 2
 draft: false
 ---

@@ -4,7 +4,7 @@ date: 2026-11-10
 summary: 아키타입이 만들어 준 HelloWorldBuilder와 config.jelly를 한 줄씩 읽으며, 화면의 폼 값이 어떻게 Java 객체가 되고 빌드에서 쓰이는지 따라갑니다.
 tags: [jenkins, plugin, descriptor, jelly, stapler]
 series: jenkins
-part: plugin
+part: basics
 order: 3
 draft: false
 ---

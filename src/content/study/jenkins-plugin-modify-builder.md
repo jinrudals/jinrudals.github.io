@@ -5,7 +5,7 @@ summary: HelloWorldBuilder에 옵션 하나를 추가하면서, Java 코드·con
 tags: [jenkins, plugin, builder, jelly]
 series: jenkins
 part: core
-order: 4
+order: 5
 draft: false
 ---
 

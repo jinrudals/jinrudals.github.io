@@ -5,7 +5,7 @@ summary: 폼 입력을 서버에서 즉시 검증하는 doCheck 메서드와, �
 tags: [jenkins, plugin, form, validation, descriptor]
 series: jenkins
 part: core
-order: 5
+order: 6
 draft: false
 ---
 

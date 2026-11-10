@@ -87,7 +87,7 @@ flowchart LR
 
 더 많은 컨트롤은 <Refs label="Jelly form controls" links={jelly} /> 문서에 정리돼 있습니다.
 
-## 라벨과 번역: ${%Name}
+## 라벨과 번역
 
 ```xml
 <f:entry title="${%Name}" field="name">

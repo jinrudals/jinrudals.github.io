@@ -52,6 +52,10 @@ h2 { font-size: 1.25rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
 .prose :not(pre) > code { background: var(--accent-soft); padding: .1em .35em; border-radius: 6px; font-size: .9em; }
 .prose .mermaid { display: flex; justify-content: center; padding: 1rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow-x: auto; }
 .prose svg, .prose img { max-width: 100%; height: auto; }
+.prose table { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: .95rem; }
+.prose th, .prose td { padding: .55rem .85rem; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.prose th { background: var(--accent-soft); font-weight: 600; white-space: nowrap; }
+.prose tbody tr:nth-child(even) { background: color-mix(in srgb, var(--surface) 60%, transparent); }
 .prose blockquote { margin-inline: 0; padding-left: 1rem; border-left: 3px solid var(--accent); color: var(--muted); }
 
 .career { list-style: none; padding: 0; border-left: 2px solid var(--line); margin-left: .4rem; }

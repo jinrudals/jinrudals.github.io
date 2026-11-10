@@ -5,8 +5,6 @@
   let { groups, lang }: { groups: { series: string; items: Entry[] }[]; lang: Lang } = $props();
 
   // consecutive entries sharing a part render under one sub-heading
-  // a single-part series doesn't need a part heading
-  const multi = (items: Entry[]) => new Set(items.map((e) => e.part)).size > 1;
 
   const bySection = (items: Entry[]) =>
     items.reduce<{ part?: string; items: Entry[] }[]>((acc, e) => {
@@ -21,7 +19,7 @@
   <section class="series-group">
     <h2>{t(lang, `series.${g.series}`)}</h2>
     {#each bySection(g.items) as s (s.part)}
-      {#if s.part && multi(g.items)}<h3>{t(lang, `section.${s.part}`)}</h3>{/if}
+      {#if s.part}<h3>{t(lang, `section.${s.part}`)}</h3>{/if}
       <EntryList entries={s.items} {lang} row />
     {/each}
   </section>

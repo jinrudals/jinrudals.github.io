@@ -50,6 +50,8 @@ Jenkins 플러그인 개발의 거의 모든 것은 이 두 개념으로 설명�
 | `RunListener` | 빌드의 시작·종료 같은 이벤트 수신 |
 | `Step` | Pipeline에서 쓰는 `steps` 추가 |
 
+> **확장점마다 구현해야 할 메서드(계약)가 다릅니다.** 빌드 단계는 `perform`, `SCM`은 `checkout`, `RunListener`는 `onCompleted` 같은 식입니다. 실제 개발에서는 `@Extension` 한 줄보다 "어떤 확장점을 고르고 그 계약을 어떻게 채우는가"에 시간이 더 듭니다. 확장점별 정리는 추후 부록에서 다룹니다.
+
 Jenkins는 이런 지점에서 "등록된 구현이 있으면 모두 불러서 쓰는" 방식으로 동작합니다. 예를 들어 빌드가 끝나면 코어는 등록된 `RunListener`를 모두 찾아 `onCompleted`를 호출합니다. 코어는 구현체가 누구인지 **미리 알 필요가 없습니다**.
 
 ### @Extension: 자동 등록
@@ -103,6 +105,8 @@ for (RunListener<?> l : ExtensionList.lookup(RunListener.class)) {
 - **실행 순서**: 같은 Extension Point에 여러 구현이 있으면 `@Extension(ordinal = 값)`으로 우선순위를 줄 수 있습니다. 값이 클수록 먼저 나옵니다.
 - **선택적 의존**: `@Extension(optional = true)`는 다른 플러그인이 없어서 이 확장을 로드할 수 없을 때 오류 대신 건너뛰게 합니다.
 - **`Descriptor`도 `@Extension`입니다.** 빌드 단계처럼 UI 설정이 있는 확장은 보통 두 부분으로 나뉩니다. 설정값을 가진 객체(`Builder` 등)와, 그 종류를 설명하는 `Descriptor`입니다. `Descriptor`에 `@Extension`을 붙여 등록하고, 이 구조는 실습에서 직접 봅니다.
+  - 설정값을 가진 객체(예: `Builder`)는 Job 설정에서 **Job마다 생성**되고, 빌드 때 `perform` 같은 계약 메서드는 이 객체에서 실행됩니다. 이 객체에는 `@Extension`이 필요 없습니다.
+  - `Descriptor`는 목록 표시, 폼, 검증을 맡는 **싱글톤**이며 `perform`을 호출하지 않습니다.
 - 다른 플러그인이 정의한 Extension Point를 쓰려면 `pom.xml`에 그 플러그인을 **의존성으로 선언**해야 합니다.
 
 ## 전체 구조

@@ -65,6 +65,7 @@ Plugin 기초부터 Pipeline, jenkinsci 배포, 운영, 공유 라이브러리 �
 ### 부록 (`part: appendix`)
 
 기본 Extension Point 사전. 슬러그는 `jenkins-plugin-ep-*`.
+각 항목은 용도, 구현해야 할 핵심 메서드(계약), 인스턴스 vs `Descriptor` 구조, 최소 예제를 다룹니다. 개요 글에서는 표로 나열하지 않고 이 부록으로 안내만 합니다.
 
 - [ ] Builder
 - [ ] Publisher / Recorder / Notifier

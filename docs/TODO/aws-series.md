@@ -13,7 +13,7 @@ NLB부터 시작해 이후 VPC, ALB 등 AWS 주제를 같은 시리즈에 이어
 
 ### NLB (`part: nlb`)
 
-- [ ] 1. lb-types — LB 종류와 L4/L7 개념
+- [x] 1. lb-types — LB 종류와 L4/L7 개념
 - [ ] 2. nlb-overview — NLB 개요 (리스너 · 타깃그룹 · AZ)
 - [ ] 3. nlb-vs-alb — NLB vs ALB
 - [ ] 4. nlb-static-ip — 정적 IP / EIP와 고정 진입

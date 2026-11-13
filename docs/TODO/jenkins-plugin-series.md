@@ -20,7 +20,7 @@ Plugin 기초부터 Pipeline, jenkinsci 배포, 운영, 공유 라이브러리 �
 
 - [x] 5. modify-builder — Builder 직접 수정하기
 - [x] 6. validation — doCheck / doFill
-- [ ] 7. unit-test — `perform`과 검증 메서드 단위 테스트
+- [x] 7. unit-test — `perform`과 검증 메서드 단위 테스트
 - [ ] 8. jenkins-rule — JenkinsRule 통합 테스트
 - [ ] 9. global-configuration — GlobalConfiguration
 - [ ] 10. job-property — JobProperty

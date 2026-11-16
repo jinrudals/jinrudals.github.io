@@ -30,6 +30,7 @@ Study posts can belong to a series via frontmatter: `series` (id, e.g. `terrafor
 - `/projects`, `/projects/[slug]`: projects
 - `/resume`: resume
 - `/notes`, `/notes/[slug]`: personal notes
+- `/events`: digest of developer events, fetched at build time from the `dev-events-digest` RSS feed (`src/lib/events-feed.ts`); the deploy workflow rebuilds weekly (Mon 10:30 KST) to pick up new issues
 
 ## Commit Convention
 

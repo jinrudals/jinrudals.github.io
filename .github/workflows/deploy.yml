@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Mondays 10:30 KST, right after dev-events-digest publishes (10:00 KST)
+    - cron: '30 1 * * 1'
 
 permissions:
   contents: read

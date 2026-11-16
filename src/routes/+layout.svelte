@@ -5,7 +5,7 @@
   let { children, data } = $props();
   const lang = $derived(data.lang as Lang);
   const origin = 'https://jinrudals.github.io';
-  const keys = ['writing', 'study', 'projects', 'career', 'resume', 'notes', 'about'];
+  const keys = ['writing', 'study', 'projects', 'career', 'resume', 'notes', 'events', 'about'];
   const barePath = $derived(switchPath(page.url.pathname, 'ko'));
   // an English-only post has no Korean page to switch to
   const koMissing = $derived(Array.isArray(page.data.langs) && !page.data.langs.includes('ko'));
